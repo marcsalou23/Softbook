@@ -1,0 +1,43 @@
+{
+    "name": "heflu_back",
+    "version": "1.0.0",
+    "description": "Backend desarrollado en nodejs de la plataforma de alquiler de alojamientos en línea Heflu",
+    "main": "index.js",
+    "type": "module",
+    "imports": {
+        "#config/*": "./config/*.js",
+        "#api/*": "./api/*.js",
+        "#controllers/*/*": "./controllers/*/*.js",
+        "#middlewares/*": "./middlewares/*.js",
+        "#models/*": "./models/*/*.js",
+        "#public/*": "./public/*",
+        "#scripts/*": "./scripts/*.js"
+    },
+    "scripts": {
+        "dev": "nodemon server.js",
+        "initDb": "node ./config/initDb.js",
+        "postinitDb": "node ./config/backupDb.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.1",
+        "express-fileupload": "^1.5.0",
+        "joi": "^17.12.2",
+        "jsonwebtoken": "^9.0.2",
+        "morgan": "^1.10.0",
+        "mysql2": "^3.9.2",
+        "nodemailer": "^6.9.13",
+        "nodemon": "^3.1.0",
+        "prettier": "^3.2.5",
+        "resend": "^3.2.0",
+        "sharp": "^0.33.3"
+    },
+    "devDependencies": {
+        "eslint": "^8.57.0"
+    }
+}
