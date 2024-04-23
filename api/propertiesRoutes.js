@@ -12,4 +12,5 @@ const router = express.Router()
 router.post("/", isUser, newPropertyController)
 router.get("/", getAllPropertiesController)
 router.get("/:id", getPropertyController)
+
 export default router
