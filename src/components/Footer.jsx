@@ -2,7 +2,7 @@ const Footer = () => {
     const team = [
         {
             name: "Marc",
-            image: "/images/Marc.jpg",
+            image: "/images/marc.jpg",
         },
     ]
     return (
