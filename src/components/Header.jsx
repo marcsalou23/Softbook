@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem"
 // Importación de formularios
 import RegisterModal from "./modals/RegisterModal"
 import LoginModal from "./modals/LoginModal"
+import NewPropertyModal from "./modals/NewPropertyModal"
 
 Modal.setAppElement("body")
 
@@ -21,11 +22,12 @@ const modalStyles = {
     },
 }
 
-const Header = () => {
+const Header = ({ filterProperties, setFilterProperties }) => {
     const { authToken, authUser, authLogout } = useAuth()
     const [navIsActive, setNavIsActive] = useState(false)
     const [registerModal, setRegisterModal] = useState(false)
     const [loginModal, setLoginModal] = useState(false)
+    const [newPropertyModal, setNewPropertyModal] = useState(false)
 
     const navigate = useNavigate()
 
@@ -34,11 +36,6 @@ const Header = () => {
 
     const handleClickProfile = () => {
         navigate("/profile")
-        handleClose()
-    }
-
-    const handleClickRentings = () => {
-        navigate("/profile/rentings")
         handleClose()
     }
 
@@ -78,6 +75,13 @@ const Header = () => {
         setLoginModal(false)
     }
 
+    const openNewPropertyModal = () => {
+        setNewPropertyModal(true)
+    }
+    const closeNewPropertyModal = () => {
+        setNewPropertyModal(false)
+    }
+
     // Animación del header
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -114,7 +118,10 @@ const Header = () => {
 
             {authUser && (
                 <nav className="flex items-center justify-between gap-1 lg:gap-4">
-                    <button className="text-violet-700 font-medium text-sm lg:text-md rounded-lg mr-4 hover:underline transition duration-300 ease-in-out capitalize">
+                    <button
+                        className="text-violet-700 font-medium text-sm lg:text-md rounded-lg mr-4 hover:underline transition duration-300 ease-in-out capitalize"
+                        onClick={openNewPropertyModal}
+                    >
                         Publicar Alquiler
                     </button>
                     <img
@@ -136,9 +143,6 @@ const Header = () => {
                 }}
             >
                 <MenuItem onClick={handleClickProfile}>Ver perfil</MenuItem>
-                <MenuItem onClick={handleClickRentings}>
-                    Mis alquileres
-                </MenuItem>
                 <MenuItem onClick={handleClickRequests}>
                     Solicitudes de alquiler
                 </MenuItem>
@@ -189,6 +193,29 @@ const Header = () => {
                         closeLoginModal={closeLoginModal}
                         setRegisterModal={setRegisterModal}
                         openRegisterModal={openRegisterModal}
+                    />
+                </Modal>
+            )}
+            {newPropertyModal && (
+                <Modal
+                    isOpen={newPropertyModal}
+                    style={modalStyles}
+                    onRequestClose={closeNewPropertyModal}
+                    contentLabel="Login Modal"
+                    className="bg-white w-full h-full lg:max-w-[900px] lg:max-h-[800px] lg:rounded-[30px] lg:fixed lg:top-[50%] lg:left-[50%] lg:translate-x-[-50%] lg:translate-y-[-50%] outline-none overscroll-contain"
+                >
+                    <div
+                        onClick={closeNewPropertyModal}
+                        className="absolute z-30 right-2 top-2 hover:scale-110 duration-200 cursor-pointer"
+                    >
+                        <IoCloseOutline className="text-4xl text-primary" />
+                    </div>
+                    <NewPropertyModal
+                        newPropertyModal={newPropertyModal}
+                        setFilterProperties={setFilterProperties}
+                        filterProperties={filterProperties}
+                        setNewPropertyModal={setNewPropertyModal}
+                        closeNewPropertyModal={closeNewPropertyModal}
                     />
                 </Modal>
             )}
