@@ -1,38 +1,42 @@
 {
-  "name": "heflu",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.15",
-    "prettier": "^3.2.5",
-    "react": "^18.2.0",
-    "react-datepicker": "^6.8.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1",
-    "react-modal": "^3.16.1",
-    "react-router-dom": "^6.22.3",
-    "react-toastify": "^10.0.5"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
-    "vite": "^5.2.0"
-  }
+    "name": "heflu_back",
+    "version": "1.0.0",
+    "description": "Backend desarrollado en nodejs de la plataforma de alquiler de alojamientos en línea Heflu",
+    "main": "index.js",
+    "type": "module",
+    "imports": {
+        "#config/*": "./config/*.js",
+        "#api/*": "./api/*.js",
+        "#controllers/*/*": "./controllers/*/*.js",
+        "#middlewares/*": "./middlewares/*.js",
+        "#models/*": "./models/*/*.js",
+        "#public/*": "./public/*",
+        "#scripts/*": "./scripts/*.js"
+    },
+    "scripts": {
+        "dev": "nodemon server.js",
+        "initDb": "node ./config/initDb.js",
+        "postinitDb": "node ./config/backupDb.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.1",
+        "express-fileupload": "^1.5.0",
+        "joi": "^17.12.2",
+        "jsonwebtoken": "^9.0.2",
+        "morgan": "^1.10.0",
+        "mysql2": "^3.9.2",
+        "nodemon": "^3.1.0",
+        "prettier": "^3.2.5",
+        "resend": "^3.2.0",
+        "sharp": "^0.33.3"
+    },
+    "devDependencies": {
+        "eslint": "^8.57.0"
+    }
 }
